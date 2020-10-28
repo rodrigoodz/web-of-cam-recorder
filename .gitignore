@@ -1,0 +1,12 @@
+logs
+*.log
+
+node_modules/
+jspm_packages/
+
+records/
+
+notas.md
+
+.env
+.env.test
