@@ -19,7 +19,7 @@ const record = (dur_hor, dur_min, dur_seg) => {
   }
 
   // let args = `-f mjpeg -framerate 16 -t ${duracion} -i http://192.168.0.212:8080/video.jpeg -vcodec libvpx -framerate 16 -bitrate 256k records/${nombre_archivo}.webm -y`;
-  let args = `-f mjpeg -framerate 16 -t ${duracion} -i http://192.168.0.212:8080/video.jpeg -vcodec libvpx -vf drawbox=x=279:y=339:color=black@0.8:width=iw:height=48:t=fill,drawtext=fontsize=20:fontfile=c:/windows/fonts/arial.ttf:text='%{localtime}':fontcolor=white@0.8:x=280:y=340 -framerate 16 -bitrate 256k records/${nombre_archivo}.webm -y`;
+  let args = `-f mjpeg -framerate 16 -t ${duracion} -i http://192.168.0.212:8080/video.jpeg -vcodec libx264 -vf drawbox=x=279:y=339:color=black@0.8:width=iw:height=48:t=fill,drawtext=fontsize=20:fontfile=c:/windows/fonts/arial.ttf:text='%{localtime}':fontcolor=white@0.8:x=280:y=340 -framerate 16 -bitrate 256k records/${nombre_archivo}.mp4 -y`;
 
   // console.log(args);
   let encoder = spawn("ffmpeg", args.split(" "));
@@ -34,10 +34,10 @@ const stopRecord = () => {
 };
 
 // borrar
-// record(0, 0, 10);
-// setInterval(() => {
-//   stopRecord();
-// }, 3000);
+record(0, 0, 10);
+setTimeout(() => {
+  stopRecord();
+}, 3000);
 
 module.exports = {
   record,
