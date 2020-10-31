@@ -1,6 +1,6 @@
 $("#recButton").addClass("notRec");
 
-$("#recButton").click(function () {
+$(".botonRec").click(function () {
   if ($("#recButton").hasClass("notRec")) {
     const input_horas = $(".input-horas").val();
     const input_minutos = $(".input-minutos").val();

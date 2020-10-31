@@ -1,4 +1,18 @@
-/* Boton Rec */
+.container {
+  background-color: #95a5a6;
+}
+/* BotonRec (div) */
+.botonRec {
+  cursor: pointer;
+  background-color: #f3f3f3;
+  border-radius: 5px;
+}
+
+/* imagen */
+.img_securitycam {
+  background-color: #f3f3f3;
+}
+/* circulo rec */
 #recButton {
   width: 35px;
   height: 35px;
