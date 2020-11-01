@@ -1,17 +1,34 @@
 .container {
-  background-color: #95a5a6;
+  background-color: #f3f3f3;
 }
 /* BotonRec (div) */
-.botonRec {
+.botonRec,
+.botones {
   cursor: pointer;
-  background-color: #f3f3f3;
+  background-color: #7f8c8d;
   border-radius: 5px;
+}
+.botonRec:active,
+.botones:active {
+  background-color: #95a5a6;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* imagen */
 .img_securitycam {
   background-color: #f3f3f3;
 }
+
+/* icono (captura) */
+.fa-camera {
+  width: 35px;
+  height: 35px;
+  font-size: 30px;
+  margin: 18px;
+  outline: none;
+}
+
 /* circulo rec */
 #recButton {
   width: 35px;
