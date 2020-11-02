@@ -41,6 +41,15 @@
   outline: none;
 }
 
+/* toast */
+.toast {
+  left: 50%;
+  top: 30%;
+  position: fixed;
+  transform: translate(-50%, 0px);
+  z-index: 9999;
+}
+/* efecto boton grabacion */
 .notRec {
   background-color: darkred;
 }

@@ -130,6 +130,8 @@ const iniciarCuentaRegresiva = (input_horas, input_minutos, input_segundos) => {
       $(".texto-grabacion").text("Iniciar Grabacion");
       $("#recButton").removeClass("Rec");
       $("#recButton").addClass("notRec");
+      ///mostrar toast
+      $(".toast").toast("show");
     }
   }, 1000);
 };
