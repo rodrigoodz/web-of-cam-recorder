@@ -1,5 +1,11 @@
+//boton grabaciones
 $("#ver-grabaciones").click(function () {
-  const archivos = getArchivos();
+  getArchivosVideos();
+});
+
+//boton capturas
+$("#ver-capturas").click(function () {
+  getArchivosCapturas();
 });
 
 ///logica del boton sacar captura
@@ -73,11 +79,11 @@ const grabar = (input_horas, input_minutos, input_segundos) => {
   });
 };
 
-///POST -> envios h,m,s y en el server llamaré a funcion recorder
-const getArchivos = () => {
+///GET -> traer archivos de video
+const getArchivosVideos = () => {
   const x = $.ajax({
     type: "GET",
-    url: "http://192.168.0.75:3000/files",
+    url: "http://192.168.0.75:3000/recordsFiles",
     success: function (response) {
       // console.log(response);
     },
@@ -86,7 +92,24 @@ const getArchivos = () => {
     },
   }).then((data) => {
     // console.log(data);
-    mostrarArchivos(data);
+    mostrarArchivos(data, "Grabaciones");
+  });
+};
+
+//GET -> traer capturas
+const getArchivosCapturas = () => {
+  const x = $.ajax({
+    type: "GET",
+    url: "http://192.168.0.75:3000/snapshotsFiles",
+    success: function (response) {
+      // console.log(response);
+    },
+    error: function (xhr, status, err) {
+      console.log(xhr.responseText);
+    },
+  }).then((data) => {
+    // console.log(data);
+    mostrarArchivos(data, "Capturas");
   });
 };
 
@@ -178,12 +201,19 @@ const iniciarCuentaRegresiva = (input_horas, input_minutos, input_segundos) => {
   }, 1000);
 };
 
-//mostrar archivos en div de grabaciones
-const mostrarArchivos = (archivos) => {
-  //limpio por si hay algo
-  $(".tabla-grabaciones tbody").html(" ");
-  //agrego lista archivos
-  archivos.forEach((archivo) => {
-    $(".tabla-grabaciones tbody").append(`<tr><td>${archivo}</td></tr>`);
-  });
+//mostrar archivos en tabla grabaciones o en tabla capturas
+const mostrarArchivos = (archivos, tipo) => {
+  if (tipo === "Grabaciones") {
+    //limpio por si hay algo
+    $(".tabla-grabaciones tbody").html(" ");
+    //agrego lista archivos
+    archivos.forEach((archivo) => {
+      $(".tabla-grabaciones tbody").append(`<tr><td>${archivo}</td></tr>`);
+    });
+  } else if (tipo === "Capturas") {
+    $(".tabla-capturas tbody").html(" ");
+    archivos.forEach((archivo) => {
+      $(".tabla-capturas tbody").append(`<tr><td>${archivo}</td></tr>`);
+    });
+  }
 };
