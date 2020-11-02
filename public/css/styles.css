@@ -3,13 +3,13 @@
 }
 /* BotonRec (div) */
 .botonRec,
-.botones {
+.botonSnapshot {
   cursor: pointer;
   background-color: #7f8c8d;
   border-radius: 5px;
 }
 .botonRec:active,
-.botones:active {
+.botonSnapshot:active {
   background-color: #95a5a6;
   box-shadow: 0 5px #666;
   transform: translateY(4px);

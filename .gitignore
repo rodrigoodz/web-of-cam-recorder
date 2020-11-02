@@ -6,6 +6,8 @@ jspm_packages/
 
 records/
 
+snapshots/
+
 notas.md
 
 .env

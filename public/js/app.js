@@ -1,7 +1,10 @@
 $("#ver-grabaciones").click(function () {
   const archivos = getArchivos();
-  // console.log("archivos -> ", archivos);
-  // mostrarArchivos(archivos);
+});
+
+///logica del boton sacar captura
+$(".botonSnapshot").click(function () {
+  sacarCaptura();
 });
 
 //logica del boton de grabacion
@@ -34,6 +37,20 @@ const limpiarCampos = () => {
   $(".input-horas").val("");
   $(".input-minutos").val("");
   $(".input-segundos").val("");
+};
+
+///POST -> llamo a snapshot en el server para sacar captura
+const sacarCaptura = () => {
+  $.ajax({
+    type: "POST",
+    url: "http://192.168.0.75:3000/snapshot",
+    success: function (response) {
+      console.log(response);
+    },
+    error: function (xhr, status, err) {
+      console.log(xhr.responseText);
+    },
+  });
 };
 
 ///POST -> envios h,m,s y en el server llamaré a funcion recorder
