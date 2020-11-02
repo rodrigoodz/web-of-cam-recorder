@@ -1,3 +1,10 @@
+$("#ver-grabaciones").click(function () {
+  const archivos = getArchivos();
+  // console.log("archivos -> ", archivos);
+  // mostrarArchivos(archivos);
+});
+
+//logica del boton de grabacion
 $("#recButton").addClass("notRec");
 $(".botonRec").click(function () {
   if ($("#recButton").hasClass("notRec")) {
@@ -20,6 +27,7 @@ $(".botonRec").click(function () {
     $("#recButton").addClass("notRec");
   }
 });
+//fin logica boton grabacion
 
 ///limpio los inputs
 const limpiarCampos = () => {
@@ -45,6 +53,23 @@ const grabar = (input_horas, input_minutos, input_segundos) => {
     error: function (xhr, status, err) {
       console.log(xhr.responseText);
     },
+  });
+};
+
+///POST -> envios h,m,s y en el server llamaré a funcion recorder
+const getArchivos = () => {
+  const x = $.ajax({
+    type: "GET",
+    url: "http://192.168.0.75:3000/files",
+    success: function (response) {
+      // console.log(response);
+    },
+    error: function (xhr, status, err) {
+      console.log(xhr.responseText);
+    },
+  }).then((data) => {
+    // console.log(data);
+    mostrarArchivos(data);
   });
 };
 
@@ -134,4 +159,14 @@ const iniciarCuentaRegresiva = (input_horas, input_minutos, input_segundos) => {
       $(".toast").toast("show");
     }
   }, 1000);
+};
+
+//mostrar archivos en div de grabaciones
+const mostrarArchivos = (archivos) => {
+  //limpio por si hay algo
+  $(".tabla-grabaciones tbody").html(" ");
+  //agrego lista archivos
+  archivos.forEach((archivo) => {
+    $(".tabla-grabaciones tbody").append(`<tr><td>${archivo}</td></tr>`);
+  });
 };
