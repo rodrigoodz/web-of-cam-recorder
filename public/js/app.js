@@ -13,6 +13,24 @@ $(".botonSnapshot").click(function () {
   sacarCaptura();
 });
 
+//al tocar la tabla capturas, debo saber que archivo se toco
+$(".tabla-capturas").click(function (e) {
+  var elemento = e.target;
+  mostrarImagen($(elemento).text());
+});
+
+//cerrar image viewer
+$("#image-viewer .close").click(function () {
+  $("#image-viewer").hide();
+});
+
+//mostrar imagen
+const mostrarImagen = (nombre) => {
+  console.log(nombre);
+  $("#full-image").attr("src", "./snapshots/" + nombre);
+  $("#image-viewer").show();
+};
+
 //logica del boton de grabacion
 $("#recButton").addClass("notRec");
 $(".botonRec").click(function () {
