@@ -13,10 +13,16 @@ $(".botonSnapshot").click(function () {
   sacarCaptura();
 });
 
+//al tocar la tabla grabaciones, debo saber que grabacion se toco
+$(".tabla-grabaciones").click(function (e) {
+  var elemento = e.target;
+  mostrarMedia($(elemento).text(), 1);
+});
+
 //al tocar la tabla capturas, debo saber que archivo se toco
 $(".tabla-capturas").click(function (e) {
   var elemento = e.target;
-  mostrarImagen($(elemento).text());
+  mostrarMedia($(elemento).text(), 2);
 });
 
 //cerrar image viewer
@@ -24,11 +30,22 @@ $("#image-viewer .close").click(function () {
   $("#image-viewer").hide();
 });
 
+//cerrar video viewer
+$("#video-viewer .close").click(function () {
+  $("#video-viewer").hide();
+});
+
 //mostrar imagen
-const mostrarImagen = (nombre) => {
-  console.log(nombre);
-  $("#full-image").attr("src", "./snapshots/" + nombre);
-  $("#image-viewer").show();
+const mostrarMedia = (nombre, tipo) => {
+  if (tipo === 1) {
+    ///grabacion
+    $("#full-video source").attr("src", "./records/" + nombre);
+    $("#video-viewer").show();
+  } else {
+    ///imagen
+    $("#full-image").attr("src", "./snapshots/" + nombre);
+    $("#image-viewer").show();
+  }
 };
 
 //logica del boton de grabacion
